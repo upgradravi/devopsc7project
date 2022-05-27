@@ -1,0 +1,18 @@
+- hosts: all
+  tasks:
+    - name: repo GPG Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: install docker
+      apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+        state: latest
